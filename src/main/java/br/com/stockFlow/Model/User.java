@@ -8,8 +8,6 @@ import java.util.UUID;
 import jakarta.persistence.Id;
 import lombok.*;
 
-import java.util.UUID;
-
 
 @AllArgsConstructor
 @RequiredArgsConstructor
@@ -20,19 +18,18 @@ import java.util.UUID;
 @Table(name = "TB_USER")
 public class User {
 
-
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "USER_ID")
+    @Column(name = "USER_ID", nullable = false)
     UUID id;
 
-    @Column(name = "USER_NAME")
-     String name;
+    @Column(name = "USER_NAME", nullable = false)
+    String name;
 
-    @Column(name = "USER_PASSWORD")
-     String password;
+    @Column(name = "USER_PASSWORD", nullable = false)
+    String password;
 
     @Enumerated(EnumType.STRING)
-    @Column(name = "USER_ROLE")
+    @Column(name = "USER_ROLE", nullable = false)
     RolesEnum role;
 }

@@ -4,11 +4,14 @@ import br.com.stockFlow.Model.User;
 import br.com.stockFlow.dto.UserDTO;
 import br.com.stockFlow.mapper.UserMapper;
 import br.com.stockFlow.service.UserService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.UUID;
 
 @AllArgsConstructor
 @RestController
@@ -19,12 +22,28 @@ public class UserController {
     UserMapper userMapper;
 
     @PostMapping
-    public UserDTO createUser(@RequestBody UserDTO userDTO) {
+    public ResponseEntity<HttpStatus> createUser(@RequestBody @Valid UserDTO userDTO) {
        User entity =  userMapper.toEntity(userDTO);
-
-
         userService.createUser(entity);
-        return userDTO;
+        return ResponseEntity.status(HttpStatus.CREATED).build();
+    }
+
+    @GetMapping()
+    public List<UserDTO> findAll() {
+       List<User> users =  userService.getAllUsers();
+
+        return userMapper.toUserDTOs(users);
+    }
+
+    @GetMapping("/{id}")
+    public UserDTO getUserById(@PathVariable UUID id) {
+        return userMapper.toUserDTO(userService.getUserById(id));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<HttpStatus> deleteUserById(@PathVariable UUID id) {
+        userService.deleteUserById(id);
+        return ResponseEntity.noContent().build();
     }
 
 }
