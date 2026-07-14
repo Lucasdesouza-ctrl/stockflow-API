@@ -2,7 +2,9 @@ package br.com.stockFlow.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
+import lombok.Builder;
 
+@Builder
 public record ProductDTO(
         @NotBlank(message = "Name is required")
         String name,

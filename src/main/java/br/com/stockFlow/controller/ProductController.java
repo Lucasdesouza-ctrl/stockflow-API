@@ -4,6 +4,7 @@ import br.com.stockFlow.Model.Product;
 import br.com.stockFlow.dto.ProductDTO;
 import br.com.stockFlow.mapper.ProductMapper;
 import br.com.stockFlow.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,15 +20,16 @@ public class  ProductController {
     ProductMapper mapper;
 
     @PostMapping
-    public UUID createProdut(@RequestBody ProductDTO productDTO) {
+    public UUID createProdut(@RequestBody @Valid ProductDTO productDTO) {
         Product product = mapper.toProduct(productDTO);
         return productService.insertProduct(product);
     }
 
-    @PostMapping("/update")
-    public void update(@RequestBody ProductDTO productDTO) {
-        Product product = mapper.toProduct(productDTO);
-        productService.updateProduct(product);
+    @PutMapping("/{id}")
+    public ProductDTO update(@RequestBody ProductDTO productDTO, @PathVariable UUID id) {
+        Product product = productService.findById(id);
+        mapper.updateEntity(productDTO, product);
+       return mapper.toProductDTO(productService.updateProduct(product));
     }
 
     @GetMapping

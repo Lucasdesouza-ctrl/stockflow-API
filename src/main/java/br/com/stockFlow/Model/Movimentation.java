@@ -29,11 +29,11 @@ public class Movimentation {
     @Column(name = "MOV_DATE",  nullable = false)
     LocalDateTime date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MOV_PRODUCT_ID",  nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "MOV_PRODUCT_ID",referencedColumnName = "PROD_ID",  nullable = false)
     Product product;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "MOV_USER_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "MOV_USER_ID", referencedColumnName = "USER_ID", nullable = false)
     User user;
 }
