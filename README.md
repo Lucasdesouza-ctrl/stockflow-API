@@ -8,10 +8,6 @@ A proposta do StockFlow é oferecer uma solução digital para registro e acompa
 
 >  Projeto em desenvolvimento.
 
-## Objetivo
-
-Desenvolver uma API robusta para gerenciamento de estoque, aplicando boas práticas de desenvolvimento backend e servindo como backend para uma futura aplicação Android.
-
 Além da implementação das funcionalidades de negócio, o projeto tem como foco o aprofundamento dos conhecimentos em:
 
 - Java
@@ -40,23 +36,23 @@ Entre os benefícios esperados estão:
 ### Usuários
 
 - [x] Cadastro de usuário
-- [ ] Consulta de usuário
-- [ ] Atualização de usuário
-- [ ] Remoção de usuário
+- [x] Consulta de usuário
+- [x] Atualização de usuário
+- [x] Remoção de usuário
 
 ### Produtos
 
-- [ ] Cadastro de produtos
-- [ ] Consulta de produtos
-- [ ] Atualização de produtos
-- [ ] Remoção de produtos
+- [x] Cadastro de produtos
+- [x] Consulta de produtos
+- [x] Atualização de produtos
+- [x] Remoção de produtos
 
 ### Estoque
 
-- [ ] Registro de entrada de produtos
-- [ ] Registro de saída de produtos
-- [ ] Controle de quantidade disponível
-- [ ] Histórico de movimentações
+- [x] Registro de entrada de produtos
+- [x] Registro de saída de produtos
+- [x] Controle de quantidade disponível
+- [x] Histórico de movimentações
 
 ### Relatórios
 
@@ -120,6 +116,33 @@ Repository
 PostgreSQL
 ```
 
+---
+
+# Estrutura do Projeto
+
+```text
+src
+├── controller
+├── dto
+├── entity
+├── exception
+├── mapper
+├── repository
+├── service
+├── config
+└── test
+```
+
+---
+
+# Próximas Funcionalidades
+
+- [ ] Implementar autenticação e autorização utilizando Spring Security e JWT
+- [ ] Desenvolver uma aplicação Web para gerenciamento de estoque
+- [ ] Desenvolver uma aplicação Android integrada à API
+
+---
+
 ## Autor
 
-Lucas de Souza
+Lucas Alexandre de Souza
